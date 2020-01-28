@@ -29,6 +29,8 @@ namespace CapstoneProject.Models
         {
             return new ApplicationDbContext();
         }
-        DbSet<Person>People { get; set; }
+        DbSet<Person> People { get; set; }
+
+        public System.Data.Entity.DbSet<CapstoneProject.Models.Person> People { get; set; }
     }
 }
