@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\DoctorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\PeopleController.cs" />
@@ -180,8 +181,21 @@
     <Compile Include="Migrations\202001281401522_Initial.Designer.cs">
       <DependentUpon>202001281401522_Initial.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202001281721203_Edited Person Model Created Doctor Model.cs" />
+    <Compile Include="Migrations\202001281721203_Edited Person Model Created Doctor Model.Designer.cs">
+      <DependentUpon>202001281721203_Edited Person Model Created Doctor Model.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001281845208_Models.cs" />
+    <Compile Include="Migrations\202001281845208_Models.Designer.cs">
+      <DependentUpon>202001281845208_Models.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001281924594_checking.cs" />
+    <Compile Include="Migrations\202001281924594_checking.Designer.cs">
+      <DependentUpon>202001281924594_checking.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Doctor.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Person.cs" />
@@ -251,6 +265,11 @@
     <Content Include="Views\People\Index.cshtml" />
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Doctors\Create.cshtml" />
+    <Content Include="Views\Doctors\Delete.cshtml" />
+    <Content Include="Views\Doctors\Details.cshtml" />
+    <Content Include="Views\Doctors\Edit.cshtml" />
+    <Content Include="Views\Doctors\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -271,6 +290,15 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\202001281401522_Initial.resx">
       <DependentUpon>202001281401522_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001281721203_Edited Person Model Created Doctor Model.resx">
+      <DependentUpon>202001281721203_Edited Person Model Created Doctor Model.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001281845208_Models.resx">
+      <DependentUpon>202001281845208_Models.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001281924594_checking.resx">
+      <DependentUpon>202001281924594_checking.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

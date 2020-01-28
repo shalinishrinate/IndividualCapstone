@@ -10,111 +10,111 @@ using CapstoneProject.Models;
 
 namespace CapstoneProject.Controllers
 {
-    public class PeopleController : Controller
+    public class DoctorsController : Controller
     {
-        private ApplicationDbContext context; 
+        private ApplicationDbContext context;
 
-        public PeopleController()
+        public DoctorsController()
         {
             context = new ApplicationDbContext();
         }
-        // GET: People
+        // GET: Doctors
         public ActionResult Index()
         {
-            return View();
+            return View(context.Doctors.ToList());
         }
 
-        // GET: People/Details/5
+        // GET: Doctors/Details/5
         public ActionResult Details(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = context.People.Find(id);
-            if (person == null)
+            Doctor doctor = context.Doctors.Find(id);
+            if (doctor == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(doctor);
         }
 
-        // GET: People/Create
+        // GET: Doctors/Create
         public ActionResult Create()
         {
             return View();
         }
 
-        // POST: People/Create
+        // POST: Doctors/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,DOB,Zipcode,City,State,AsthmaTriggers")] Person person)
+        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Email,PhoneNumber,StreetAddress,City,State,Zipcode")] Doctor doctor)
         {
             if (ModelState.IsValid)
             {
-                context.People.Add(person);
+                context.Doctors.Add(doctor);
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(person);
+            return View(doctor);
         }
 
-        // GET: People/Edit/5
+        // GET: Doctors/Edit/5
         public ActionResult Edit(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = context.People.Find(id);
-            if (person == null)
+            Doctor doctor = context.Doctors.Find(id);
+            if (doctor == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(doctor);
         }
 
-        // POST: People/Edit/5
+        // POST: Doctors/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,DOB,Zipcode,City,State,Country,AsthmaTriggers")] Person person)
+        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,Email,PhoneNumber,StreetAddress,City,State,Zipcode")] Doctor doctor)
         {
             if (ModelState.IsValid)
             {
-                context.Entry(person).State = EntityState.Modified;
+                context.Entry(doctor).State = EntityState.Modified;
                 context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            return View(person);
+            return View(doctor);
         }
 
-        // GET: People/Delete/5
+        // GET: Doctors/Delete/5
         public ActionResult Delete(int? id)
         {
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = context.People.Find(id);
-            if (person == null)
+            Doctor doctor = context.Doctors.Find(id);
+            if (doctor == null)
             {
                 return HttpNotFound();
             }
-            return View(person);
+            return View(doctor);
         }
 
-        // POST: People/Delete/5
+        // POST: Doctors/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            Person person = context.People.Find(id);
-            context.People.Remove(person);
+            Doctor doctor = context.Doctors.Find(id);
+            context.Doctors.Remove(doctor);
             context.SaveChanges();
             return RedirectToAction("Index");
         }

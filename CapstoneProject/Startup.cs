@@ -22,8 +22,8 @@ namespace CapstoneProject
             ApplicationDbContext context = new ApplicationDbContext();
 
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(context));
-            
-            // creating Creating Person role     
+
+            //creating Creating Person role
             if (!roleManager.RoleExists("Person"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
