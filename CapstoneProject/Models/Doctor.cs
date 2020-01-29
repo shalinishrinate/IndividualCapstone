@@ -9,7 +9,7 @@ namespace CapstoneProject.Models
     public class Doctor
     {
         [Key]
-        public int Id { get; set; }
+        public int? DoctorId { get; set; }
 
         [Display(Name = "First Name")]
         public string FirstName { get; set; }

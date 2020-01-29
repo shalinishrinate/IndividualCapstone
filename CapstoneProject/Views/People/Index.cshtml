@@ -21,7 +21,13 @@
             @Html.DisplayNameFor(model => model.DOB)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Zipcode)
+            @Html.DisplayNameFor(model => model.Email)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.PhoneNumber)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.StreetAddress)
         </th>
         <th>
             @Html.DisplayNameFor(model => model.City)
@@ -30,40 +36,88 @@
             @Html.DisplayNameFor(model => model.State)
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.AsthmaTriggers)
+            @Html.DisplayNameFor(model => model.State)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Zipcode)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsPollutionATrigger)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.ArePollensATrigger)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AreDustMitesATrigger)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsTobaccoSmokeATrigger)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.IsMoldATrigger)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.AreBurningWoodOrGrassATrigger)
         </th>
         <th></th>
     </tr>
 
 @foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.FirstName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.LastName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.DOB)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Zipcode)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.City)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.State)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.AsthmaTriggers)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
-            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
-        </td>
-    </tr>
+<tr>
+    <td>
+        @Html.DisplayNameFor(model => model.FirstName)
+    </td>
+    <td>
+        @Html.DisplayNameFor(model => model.LastName)
+    </td>
+    <td>
+        @Html.DisplayNameFor(model => model.DOB)
+    </td>
+    <td>
+        @Html.DisplayNameFor(model => model.Email)
+    </td>
+    <td>
+        @Html.DisplayNameFor(model => model.PhoneNumber)
+    </td>
+    <td>
+        @Html.DisplayNameFor(model => model.StreetAddress)
+    </td>
+    <td>
+        @Html.DisplayNameFor(model => model.City)
+    </td>
+    <td>
+        @Html.DisplayNameFor(model => model.State)
+    </td>
+    <td>
+        @Html.DisplayNameFor(model => model.State)
+    </td>
+    <td>
+        @Html.DisplayNameFor(model => model.Zipcode)
+    </td>
+    <td>
+        @Html.DisplayNameFor(model => model.IsPollutionATrigger)
+    </td>
+    <td>
+        @Html.DisplayNameFor(model => model.ArePollensATrigger)
+    </td>
+    <td>
+        @Html.DisplayNameFor(model => model.AreDustMitesATrigger)
+    </td>
+    <td>
+        @Html.DisplayNameFor(model => model.IsTobaccoSmokeATrigger)
+    </td>
+    <td>
+        @Html.DisplayNameFor(model => model.IsMoldATrigger)
+    </td>
+    <td>
+        @Html.DisplayNameFor(model => model.AreBurningWoodOrGrassATrigger)
+    </td>
+    <td>
+        @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+        @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+        @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+    </td>
+</tr>
 }
 
 </table>

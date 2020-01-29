@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -61,10 +62,15 @@ namespace CapstoneProject.Models
         [Display(Name = "Asthma Trigger - Mold?")]
         public bool IsMoldATrigger { get; set; }
 
-        [Display(Name = "Asthma Trigger - Animals?")]
-        public bool AreAnimalsATrigger { get; set; }
+        //[Display(Name = "Asthma Trigger - Animals?")]
+        //public bool AreAnimalsATrigger { get; set; }
 
         [Display(Name = "Asthma Trigger - Burning Wood or Grass?")]
         public bool AreBurningWoodOrGrassATrigger { get; set; }
+
+        [ForeignKey("Doctor")]
+        public int DoctorId { get; set; }
+        public Doctor Doctor { get; set; }
+     
     }
 }

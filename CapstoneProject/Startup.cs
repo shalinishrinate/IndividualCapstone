@@ -29,7 +29,12 @@ namespace CapstoneProject
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Person";
                 roleManager.Create(role);
-
+            }
+            else if (!roleManager.RoleExists("Doctor"))
+            {
+                var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
+                role.Name = "Doctor";
+                roleManager.Create(role);
             }
 
         }

@@ -78,10 +78,20 @@ namespace CapstoneProject.Controllers
             // This doesn't count login failures towards account lockout    
             // To enable password failures to trigger account lockout, change to shouldLockout: true    
             var result = await SignInManager.PasswordSignInAsync(model.UserName, model.Password, model.RememberMe, shouldLockout: false);
+            
             switch (result)
             {
                 case SignInStatus.Success:
-                    return RedirectToLocal(returnUrl);
+                    var user = await UserManager.FindAsync(model.UserName, model.Password);
+                    var roles = await UserManager.GetRolesAsync(user.Id);
+                    if (roles.Contains("Person"))
+                    {
+                        return RedirectToAction("Details", "People");
+                    }
+                    else
+                    {
+                        return RedirectToLocal(returnUrl);
+                    }
                 case SignInStatus.LockedOut:
                     return View("Lockout");
                 case SignInStatus.RequiresVerification:
@@ -168,7 +178,11 @@ namespace CapstoneProject.Controllers
                     // await UserManager.SendEmailAsync(user.Id, "Confirm your account", "Please confirm your account by clicking <a href=\"" + callbackUrl + "\">here</a>");    
                     //Assign Role to user Here       
                     await this.UserManager.AddToRoleAsync(user.Id, model.UserRoles);
-                    //Ends Here     
+                    //Ends Here 
+                    if (model.UserRoles =="Person")
+                    {
+                        return RedirectToAction("Create", "People");
+                    }
                     return RedirectToAction("Index", "Users");
                 }
                 ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
