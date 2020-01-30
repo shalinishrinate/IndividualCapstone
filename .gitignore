@@ -350,3 +350,5 @@ MigrationBackup/
 .ionide/
 
 .PrivateKeys.cs
+
+PrivateKeys.cs
