@@ -12,7 +12,11 @@ namespace CapstoneProject.Controllers
         {
             return View();
         }
-
+        public ActionResult Map()
+        {
+            ViewBag.MapURL = PrivateKeys.googleMap;
+            return View();
+        }
         public ActionResult About()
         {
             ViewBag.Message = "Your application description page.";

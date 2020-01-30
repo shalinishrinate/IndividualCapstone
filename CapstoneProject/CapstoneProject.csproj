@@ -270,6 +270,7 @@
     <Content Include="Views\AsthmaActionPlans\Details.cshtml" />
     <Content Include="Views\AsthmaActionPlans\Edit.cshtml" />
     <Content Include="Views\AsthmaActionPlans\Index.cshtml" />
+    <Content Include="Views\Home\Map.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
