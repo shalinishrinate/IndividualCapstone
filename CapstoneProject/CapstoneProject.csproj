@@ -168,6 +168,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AsthmaActionPlansController.cs" />
     <Compile Include="Controllers\DoctorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -177,9 +178,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202001292018416_another.cs" />
-    <Compile Include="Migrations\202001292018416_another.Designer.cs">
-      <DependentUpon>202001292018416_another.cs</DependentUpon>
+    <Compile Include="Migrations\202001292100435_fix.cs" />
+    <Compile Include="Migrations\202001292100435_fix.Designer.cs">
+      <DependentUpon>202001292100435_fix.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202001301959168_nullable datatype.cs" />
+    <Compile Include="Migrations\202001301959168_nullable datatype.Designer.cs">
+      <DependentUpon>202001301959168_nullable datatype.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -259,6 +264,11 @@
     <Content Include="Views\Doctors\Details.cshtml" />
     <Content Include="Views\Doctors\Edit.cshtml" />
     <Content Include="Views\Doctors\Index.cshtml" />
+    <Content Include="Views\AsthmaActionPlans\Create.cshtml" />
+    <Content Include="Views\AsthmaActionPlans\Delete.cshtml" />
+    <Content Include="Views\AsthmaActionPlans\Details.cshtml" />
+    <Content Include="Views\AsthmaActionPlans\Edit.cshtml" />
+    <Content Include="Views\AsthmaActionPlans\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -277,8 +287,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202001292018416_another.resx">
-      <DependentUpon>202001292018416_another.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202001292100435_fix.resx">
+      <DependentUpon>202001292100435_fix.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202001301959168_nullable datatype.resx">
+      <DependentUpon>202001301959168_nullable datatype.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

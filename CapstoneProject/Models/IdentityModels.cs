@@ -34,5 +34,7 @@ namespace CapstoneProject.Models
         public System.Data.Entity.DbSet<CapstoneProject.Models.Person> People { get; set; }
 
         public System.Data.Entity.DbSet<CapstoneProject.Models.Doctor> Doctors { get; set; }
+
+        public System.Data.Entity.DbSet<CapstoneProject.Models.AsthmaActionPlan> AsthmaActionPlans { get; set; }
     }
 }

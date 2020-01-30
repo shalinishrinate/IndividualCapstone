@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
@@ -9,7 +10,7 @@ namespace CapstoneProject.Models
     public class AsthmaActionPlan
     {
         [Key]
-        public int Id { get; set; }
+        public int AsthmaActionPlanId { get; set; }
 
         public string Medicine1Name { get; set; }
         public string Medicine1Dosage { get; set; }
@@ -22,5 +23,9 @@ namespace CapstoneProject.Models
         public string Medicine3Name { get; set; }
         public string Medicine3Dosage { get; set; }
         public string Medicine3Schedule { get; set; }
+
+        [ForeignKey("Person")]
+        public int Id { get; set; }
+        public Person Person { get; set; }
     }
 }

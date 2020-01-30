@@ -69,7 +69,7 @@ namespace CapstoneProject.Models
         public bool AreBurningWoodOrGrassATrigger { get; set; }
 
         [ForeignKey("Doctor")]
-        public int DoctorId { get; set; }
+        public int? DoctorId { get; set; }
         public Doctor Doctor { get; set; }
      
     }

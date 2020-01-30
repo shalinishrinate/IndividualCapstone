@@ -30,7 +30,7 @@ namespace CapstoneProject
                 role.Name = "Person";
                 roleManager.Create(role);
             }
-            else if (!roleManager.RoleExists("Doctor"))
+            if (!roleManager.RoleExists("Doctor"))
             {
                 var role = new Microsoft.AspNet.Identity.EntityFramework.IdentityRole();
                 role.Name = "Doctor";
