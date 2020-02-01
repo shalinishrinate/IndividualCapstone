@@ -42,7 +42,8 @@ namespace CapstoneProject.Controllers
         // GET: People/Create
         public ActionResult Create()
         {
-            return View();
+            Person person = new Person();
+            return View(person);
         }
 
         // POST: People/Create
@@ -50,7 +51,7 @@ namespace CapstoneProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,DOB,Zipcode,City,State,AsthmaTriggers")] Person person)
+        public ActionResult Create(Person person)
         {
             if (ModelState.IsValid)
             {
@@ -65,11 +66,12 @@ namespace CapstoneProject.Controllers
         // GET: People/Edit/5
         public ActionResult Edit(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Person person = context.People.Find(id);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            Person person = new Person();
+            person = context.People.Where(p => p.Id == id).SingleOrDefault();
             if (person == null)
             {
                 return HttpNotFound();
@@ -82,43 +84,86 @@ namespace CapstoneProject.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "Id,FirstName,LastName,DOB,Zipcode,City,State,Country,AsthmaTriggers")] Person person)
+        public ActionResult Edit(Person person)
         {
-            if (ModelState.IsValid)
+            try
             {
-                context.Entry(person).State = EntityState.Modified;
+                var editedPerson = context.People.Where(p => p.Id == person.Id).SingleOrDefault();
+                editedPerson.FirstName = person.FirstName;
+                editedPerson.LastName = person.LastName;
+                editedPerson.DOB = person.DOB;
+                editedPerson.PhoneNumber = person.PhoneNumber;
+                editedPerson.Email = person.Email;
+                editedPerson.StreetAddress = person.StreetAddress;
+                editedPerson.City = person.City;
+                editedPerson.State = person.State;
+                editedPerson.Zipcode = person.Zipcode;
+                editedPerson.IsPollutionATrigger = person.IsPollutionATrigger;
+                editedPerson.ArePollensATrigger = person.ArePollensATrigger;
+                editedPerson.AreDustMitesATrigger = person.AreDustMitesATrigger;
+                editedPerson.IsTobaccoSmokeATrigger = person.IsTobaccoSmokeATrigger;
+                editedPerson.IsMoldATrigger = person.IsMoldATrigger;
+                editedPerson.AreBurningWoodOrGrassATrigger = person.AreBurningWoodOrGrassATrigger;
+                
                 context.SaveChanges();
-                return RedirectToAction("Index");
+                return RedirectToAction("Index", "People");
+
             }
-            return View(person);
+            catch (Exception e)
+            {
+                return View();
+            }
+            //if (ModelState.IsValid)
+            //{
+            //    context.Entry(person).State = EntityState.Modified;
+            //    context.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
+            //return View(person);
         }
 
         // GET: People/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Person person = context.People.Find(id);
-            if (person == null)
-            {
-                return HttpNotFound();
-            }
+            Person person = new Person();
+            person = context.People.Where(p => p.Id == id).SingleOrDefault();
             return View(person);
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //Person person = context.People.Find(id);
+            //if (person == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //return View(person);
         }
 
         // POST: People/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult DeleteConfirmed(int id, Person person)
         {
-            Person person = context.People.Find(id);
-            context.People.Remove(person);
-            context.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                person = context.People.Where(p => p.Id == id).SingleOrDefault();
+                context.People.Remove(person);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch
+            {
+                return View();
+            }
         }
 
+        public ActionResult GetDoctorDetails(int id)
+        {
+            var doctorDetails = context.People.Where(p => p.Id == id).Select(p => p.DoctorId == id);
+
+            return View(doctorDetails);
+        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

@@ -183,6 +183,10 @@ namespace CapstoneProject.Controllers
                     {
                         return RedirectToAction("Create", "People");
                     }
+                   else if (model.UserRoles == "Doctor")
+                    {
+                        return RedirectToAction("Create", "Doctors");
+                    }
                     return RedirectToAction("Index", "Users");
                 }
                 ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
