@@ -17,16 +17,16 @@ namespace CapstoneProject.Controllers
             ViewBag.MapURL = PrivateKeys.googleMap;
             return View();
         }
-        public ActionResult About()
+        public ActionResult AsthmaCheckList()
         {
             //ViewBag.Message = "Your application description page.";
 
             return View();
         }
 
-        public ActionResult Contact()
+        public ActionResult AsthmaFactsMyths()
         {
-            ViewBag.Message = "Contact Us";
+           // ViewBag.Message = "Contact Us";
 
             return View();
         }

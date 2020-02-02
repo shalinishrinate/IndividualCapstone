@@ -13,7 +13,7 @@ namespace CapstoneProject.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "202001292100435_fix"; }
+            get { return "202002022144266_fix"; }
         }
         
         string IMigrationMetadata.Source

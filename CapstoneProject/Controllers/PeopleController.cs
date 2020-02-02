@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -21,28 +22,36 @@ namespace CapstoneProject.Controllers
         // GET: People
         public ActionResult Index()
         {
+            var people = context.People.Include(p => p.Doctor).ToList();
             return View();
         }
 
         // GET: People/Details/5
         public ActionResult Details(int? id)
         {
+            var person = context.People.Include(p => p.Doctor).SingleOrDefault(p => p.Id == id);
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            Person person = context.People.Find(id);
+            //Person person = context.People.Find(id);
             if (person == null)
             {
                 return HttpNotFound();
             }
             return View(person);
         }
-
+       
+        
         // GET: People/Create
         public ActionResult Create()
         {
-            Person person = new Person();
+            var doctors = context.Doctors.ToList();
+            Person person = new Person()
+            {
+                Doctors = doctors
+            };
+        
             return View(person);
         }
 
@@ -56,7 +65,9 @@ namespace CapstoneProject.Controllers
             if (ModelState.IsValid)
             {
                 context.People.Add(person);
+                //var Doctors = context.Doctors.Where(d => d);
                 context.SaveChanges();
+                
                 return RedirectToAction("Index");
             }
 
@@ -158,12 +169,6 @@ namespace CapstoneProject.Controllers
             }
         }
 
-        public ActionResult GetDoctorDetails(int id)
-        {
-            var doctorDetails = context.People.Where(p => p.Id == id).Select(p => p.DoctorId == id);
-
-            return View(doctorDetails);
-        }
         protected override void Dispose(bool disposing)
         {
             if (disposing)

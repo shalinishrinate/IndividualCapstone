@@ -12,12 +12,18 @@ namespace CapstoneProject.Controllers
 {
     public class AsthmaActionPlansController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext context;
+
+        public AsthmaActionPlansController()
+        {
+            context = new ApplicationDbContext();
+
+        }
 
         // GET: AsthmaActionPlans
         public ActionResult Index()
         {
-            var asthmaActionPlans = db.AsthmaActionPlans.Include(a => a.Person);
+            var asthmaActionPlans = context.AsthmaActionPlans.Include(a => a.Person);
             return View(asthmaActionPlans.ToList());
         }
 
@@ -28,7 +34,7 @@ namespace CapstoneProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AsthmaActionPlan asthmaActionPlan = db.AsthmaActionPlans.Find(id);
+            AsthmaActionPlan asthmaActionPlan = context.AsthmaActionPlans.Find(id);
             if (asthmaActionPlan == null)
             {
                 return HttpNotFound();
@@ -39,7 +45,7 @@ namespace CapstoneProject.Controllers
         // GET: AsthmaActionPlans/Create
         public ActionResult Create()
         {
-            ViewBag.Id = new SelectList(db.People, "Id", "FirstName");
+            ViewBag.Id = new SelectList(context.People, "Id", "FirstName");
             return View();
         }
 
@@ -52,12 +58,12 @@ namespace CapstoneProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.AsthmaActionPlans.Add(asthmaActionPlan);
-                db.SaveChanges();
+                context.AsthmaActionPlans.Add(asthmaActionPlan);
+                context.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            ViewBag.Id = new SelectList(db.People, "Id", "FirstName", asthmaActionPlan.Id);
+            ViewBag.Id = new SelectList(context.People, "Id", "FirstName", asthmaActionPlan.Id);
             return View(asthmaActionPlan);
         }
 
@@ -68,12 +74,12 @@ namespace CapstoneProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AsthmaActionPlan asthmaActionPlan = db.AsthmaActionPlans.Find(id);
+            AsthmaActionPlan asthmaActionPlan = context.AsthmaActionPlans.Find(id);
             if (asthmaActionPlan == null)
             {
                 return HttpNotFound();
             }
-            ViewBag.Id = new SelectList(db.People, "Id", "FirstName", asthmaActionPlan.Id);
+            ViewBag.Id = new SelectList(context.People, "Id", "FirstName", asthmaActionPlan.Id);
             return View(asthmaActionPlan);
         }
 
@@ -86,11 +92,11 @@ namespace CapstoneProject.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(asthmaActionPlan).State = EntityState.Modified;
-                db.SaveChanges();
+                context.Entry(asthmaActionPlan).State = EntityState.Modified;
+                context.SaveChanges();
                 return RedirectToAction("Index");
             }
-            ViewBag.Id = new SelectList(db.People, "Id", "FirstName", asthmaActionPlan.Id);
+            ViewBag.Id = new SelectList(context.People, "Id", "FirstName", asthmaActionPlan.Id);
             return View(asthmaActionPlan);
         }
 
@@ -101,7 +107,7 @@ namespace CapstoneProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AsthmaActionPlan asthmaActionPlan = db.AsthmaActionPlans.Find(id);
+            AsthmaActionPlan asthmaActionPlan = context.AsthmaActionPlans.Find(id);
             if (asthmaActionPlan == null)
             {
                 return HttpNotFound();
@@ -114,9 +120,9 @@ namespace CapstoneProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            AsthmaActionPlan asthmaActionPlan = db.AsthmaActionPlans.Find(id);
-            db.AsthmaActionPlans.Remove(asthmaActionPlan);
-            db.SaveChanges();
+            AsthmaActionPlan asthmaActionPlan = context.AsthmaActionPlans.Find(id);
+            context.AsthmaActionPlans.Remove(asthmaActionPlan);
+            context.SaveChanges();
             return RedirectToAction("Index");
         }
 
@@ -124,7 +130,7 @@ namespace CapstoneProject.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                context.Dispose();
             }
             base.Dispose(disposing);
         }
