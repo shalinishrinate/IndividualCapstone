@@ -23,7 +23,7 @@ namespace CapstoneProject.Controllers
         public ActionResult Index()
         {
             var people = context.People.Include(p => p.Doctor).ToList();
-            return View();
+            return View(people);
         }
 
         // GET: People/Details/5
@@ -88,7 +88,8 @@ namespace CapstoneProject.Controllers
 
             }
             context.SaveChanges();
-            return RedirectToAction("Index", person);
+            return RedirectToAction("Index");
+            //return View("Person");
             //if (ModelState.IsValid)
             //{
             //    context.People.Add(person);
