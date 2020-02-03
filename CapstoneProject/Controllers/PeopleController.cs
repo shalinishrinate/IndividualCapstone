@@ -62,16 +62,43 @@ namespace CapstoneProject.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Person person)
         {
-            if (ModelState.IsValid)
+            if(person.Id == 0)
             {
                 context.People.Add(person);
-                //var Doctors = context.Doctors.Where(d => d);
-                context.SaveChanges();
-                
-                return RedirectToAction("Index");
             }
+            else
+            {
+                var personinDB = context.People.Single(p => p.Id == person.Id);
+                personinDB.FirstName = person.FirstName;
+                personinDB.LastName = person.LastName;
+                personinDB.DOB = person.DOB;
+                personinDB.PhoneNumber = person.PhoneNumber;
+                personinDB.Email = person.Email;
+                personinDB.StreetAddress = person.StreetAddress;
+                personinDB.City = person.City;
+                personinDB.State = person.State;
+                personinDB.Zipcode = person.Zipcode;
+                personinDB.IsPollutionATrigger = person.IsPollutionATrigger;
+                personinDB.ArePollensATrigger = person.ArePollensATrigger;
+                personinDB.AreDustMitesATrigger = person.AreDustMitesATrigger;
+                personinDB.IsTobaccoSmokeATrigger = person.IsTobaccoSmokeATrigger;
+                personinDB.IsMoldATrigger = person.IsMoldATrigger;
+                personinDB.AreBurningWoodOrGrassATrigger = person.AreBurningWoodOrGrassATrigger;
+                personinDB.DoctorId = person.DoctorId;
 
-            return View(person);
+            }
+            context.SaveChanges();
+            return RedirectToAction("Index", person);
+            //if (ModelState.IsValid)
+            //{
+            //    context.People.Add(person);
+            //    //var Doctors = context.Doctors.Where(d => d);
+            //    context.SaveChanges();
+                
+            //    return RedirectToAction("Index");
+            //}
+
+           // return View(person);
         }
 
         // GET: People/Edit/5
@@ -115,7 +142,8 @@ namespace CapstoneProject.Controllers
                 editedPerson.IsTobaccoSmokeATrigger = person.IsTobaccoSmokeATrigger;
                 editedPerson.IsMoldATrigger = person.IsMoldATrigger;
                 editedPerson.AreBurningWoodOrGrassATrigger = person.AreBurningWoodOrGrassATrigger;
-                
+                editedPerson.DoctorId = person.DoctorId;
+
                 context.SaveChanges();
                 return RedirectToAction("Index", "People");
 
