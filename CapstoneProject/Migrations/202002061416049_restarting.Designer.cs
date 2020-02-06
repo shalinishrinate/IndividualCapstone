@@ -7,13 +7,13 @@ namespace CapstoneProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class fix : IMigrationMetadata
+    public sealed partial class restarting : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(fix));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(restarting));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002022144266_fix"; }
+            get { return "202002061416049_restarting"; }
         }
         
         string IMigrationMetadata.Source

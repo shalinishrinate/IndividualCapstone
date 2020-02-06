@@ -4,78 +4,90 @@
     ViewBag.Title = "Details";
 }
 
-<h2>Details</h2>
+@*<h2>Details</h2>*@
 
-<div>
-    <h4>Doctor</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.FirstName)
-        </dt>
+<p class="headerText">Details of your Doctor</p>
 
-        <dd>
-            @Html.DisplayFor(model => model.FirstName)
-        </dd>
+<p> @Html.DisplayFor(model => model.FirstName) @Html.DisplayFor(model => model.LastName)</p>
+<p class="headerText">Contact Information:</p>
+<p> @Html.DisplayFor(model => model.Email)</p>
+<p> @Html.DisplayFor(model => model.PhoneNumber)</p>
+<p class="headerText">Address Information:</p>
+<p> @Html.DisplayFor(model => model.StreetAddress)</p>
+<p> @Html.DisplayFor(model => model.StreetAddress)</p>
+<p> @Html.DisplayFor(model => model.City)</p>
+<p>@Html.DisplayFor(model => model.State)@Html.DisplayFor(model => model.State)@Html.DisplayFor(model => model.Zipcode)</p>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.LastName)
-        </dt>
+@*<div>
+        <h4>Doctor</h4>
+        <hr />
+        <dl class="dl-horizontal">
+            <dt>
+                @Html.DisplayNameFor(model => model.FirstName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.LastName)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.FirstName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Email)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.LastName)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Email)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.LastName)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.PhoneNumber)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.Email)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.PhoneNumber)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.Email)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.StreetAddress)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.PhoneNumber)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.StreetAddress)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.PhoneNumber)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.City)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.StreetAddress)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.City)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.StreetAddress)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.State)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.City)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.State)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.City)
+            </dd>
 
-        <dt>
-            @Html.DisplayNameFor(model => model.Zipcode)
-        </dt>
+            <dt>
+                @Html.DisplayNameFor(model => model.State)
+            </dt>
 
-        <dd>
-            @Html.DisplayFor(model => model.Zipcode)
-        </dd>
+            <dd>
+                @Html.DisplayFor(model => model.State)
+            </dd>
 
-    </dl>
-</div>
+            <dt>
+                @Html.DisplayNameFor(model => model.Zipcode)
+            </dt>
+
+            <dd>
+                @Html.DisplayFor(model => model.Zipcode)
+            </dd>
+
+        </dl>
+    </div>*@
 <p>
     @Html.ActionLink("Edit", "Edit", new { id = Model.DoctorId }) |
     @Html.ActionLink("Back to List", "Index")

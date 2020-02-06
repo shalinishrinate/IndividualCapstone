@@ -71,6 +71,10 @@ namespace CapstoneProject.Models
         [Display(Name = "Asthma Trigger - Burning Wood or Grass?")]
         public bool AreBurningWoodOrGrassATrigger { get; set; }
 
+        [ForeignKey("ApplicationUser")]
+        public string ApplicationId { get; set; }
+        public ApplicationUser ApplicationUser { get; set; }
+
         [ForeignKey("Doctor")]
         public int? DoctorId { get; set; }
         public Doctor Doctor { get; set; }
