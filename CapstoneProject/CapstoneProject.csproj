@@ -189,6 +189,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\AirQualityController.cs" />
     <Compile Include="Controllers\AsthmaActionPlansController.cs" />
+    <Compile Include="Controllers\AsthmaDetailsController.cs" />
     <Compile Include="Controllers\DoctorsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -198,9 +199,13 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002070700102_actionplanmodel.cs" />
-    <Compile Include="Migrations\202002070700102_actionplanmodel.Designer.cs">
-      <DependentUpon>202002070700102_actionplanmodel.cs</DependentUpon>
+    <Compile Include="Migrations\202002071634474_asthmadetailmodel.cs" />
+    <Compile Include="Migrations\202002071634474_asthmadetailmodel.Designer.cs">
+      <DependentUpon>202002071634474_asthmadetailmodel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202002071637169_newchange.cs" />
+    <Compile Include="Migrations\202002071637169_newchange.Designer.cs">
+      <DependentUpon>202002071637169_newchange.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -298,6 +303,11 @@
     <Content Include="Views\AirQuality\Index.cshtml" />
     <Content Include="Views\People\Index.cshtml" />
     <Content Include="Views\People\PersonIndex.cshtml" />
+    <Content Include="Views\AsthmaDetails\Create.cshtml" />
+    <Content Include="Views\AsthmaDetails\Delete.cshtml" />
+    <Content Include="Views\AsthmaDetails\Details.cshtml" />
+    <Content Include="Views\AsthmaDetails\Edit.cshtml" />
+    <Content Include="Views\AsthmaDetails\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -316,8 +326,11 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002070700102_actionplanmodel.resx">
-      <DependentUpon>202002070700102_actionplanmodel.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002071634474_asthmadetailmodel.resx">
+      <DependentUpon>202002071634474_asthmadetailmodel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202002071637169_newchange.resx">
+      <DependentUpon>202002071637169_newchange.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -3,7 +3,7 @@ namespace CapstoneProject.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class actionplanmodel : DbMigration
+    public partial class asthmadetailmodel : DbMigration
     {
         public override void Up()
         {

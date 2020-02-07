@@ -38,6 +38,7 @@ namespace CapstoneProject.Controllers
             PersonProfileViewModel personProfile = new PersonProfileViewModel();
             var userId = User.Identity.GetUserId();
             var person = context.People.Where(p => p.ApplicationId == userId).FirstOrDefault();
+            personProfile.Id = person.Id;
             personProfile.FirstName = person.FirstName;
             personProfile.LastName = person.LastName;
             personProfile.DOB = person.DOB;
@@ -60,7 +61,29 @@ namespace CapstoneProject.Controllers
         [HttpPost]
         public ActionResult PersonIndex(PersonProfileViewModel profileDetails)
         {
-            return View();
+            //code for saving data
+            Person person = new Person();
+            person.Id = profileDetails.Id;
+            person.FirstName = profileDetails.FirstName;
+            person.LastName = profileDetails.LastName;
+            person.DOB = profileDetails.DOB;
+            person.PhoneNumber = profileDetails.PhoneNumber;
+            person.Email = profileDetails.Email;
+            person.StreetAddress = profileDetails.StreetAddress;
+            person.City = profileDetails.City;
+            person.State = profileDetails.State;
+            person.Zipcode = profileDetails.Zipcode;
+            person.IsPollutionATrigger = profileDetails.IsPollutionATrigger;
+            person.ArePollensATrigger = profileDetails.ArePollensATrigger;
+            person.AreDustMitesATrigger = profileDetails.AreDustMitesATrigger;
+            person.IsTobaccoSmokeATrigger = profileDetails.IsTobaccoSmokeATrigger;
+            person.IsMoldATrigger = profileDetails.IsMoldATrigger;
+            person.AreBurningWoodOrGrassATrigger = profileDetails.AreBurningWoodOrGrassATrigger;
+            person.DoctorId = Convert.ToInt32(profileDetails.SelectedDoctor);
+
+            context.People.Add(person);
+            context.SaveChanges();
+            return RedirectToAction("Details",new {id=profileDetails.Id });
         }
 
         // GET: People/Details/5

@@ -19,9 +19,12 @@
 <p> @Html.DisplayFor(model => model.StreetAddress)</p>
 <p> @Html.DisplayFor(model => model.City)</p>
 <p>@Html.DisplayFor(model => model.State)@Html.DisplayFor(model => model.State)@Html.DisplayFor(model => model.Zipcode)</p>
- 
+<p class="headerText">Doctor Information:</p>
+<a href="@Url.Action("Details","Doctors",new { id = Model.DoctorId })"> @Model.Doctor.FirstName </a>
+
+
 <p class="headerText">Asthma Triggers</p>
-            
+
 @if (Model.IsPollutionATrigger == true)
 {
     <p class="headerText"> Air Pollution</p>
@@ -48,7 +51,8 @@
 }
 
 
-    <p>
-        @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
-        @Html.ActionLink("Back to List", "Index")
-    </p>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+    
+</p>

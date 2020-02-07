@@ -1,0 +1,50 @@
+﻿@model CapstoneProject.Models.AsthmaDetails
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>AsthmaDetails</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Person.FirstName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Person.FirstName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PeakFlowRecordedDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PeakFlowRecordedDate)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PeakFlowNumber)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PeakFlowNumber)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AsthmaAttacks)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AsthmaAttacks)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.AsthamaDetailsId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -7,13 +7,13 @@ namespace CapstoneProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class actionplanmodel : IMigrationMetadata
+    public sealed partial class newchange : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(actionplanmodel));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(newchange));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002070700102_actionplanmodel"; }
+            get { return "202002071637169_newchange"; }
         }
         
         string IMigrationMetadata.Source
