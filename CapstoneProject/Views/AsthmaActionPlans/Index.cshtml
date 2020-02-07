@@ -5,61 +5,138 @@
     Layout = null;
 }
 
-<!DOCTYPE html>
-
-<html>
-<head>
-    <meta name="viewport" content="width=device-width" />
-    <title>Index</title>
-</head>
-<body>
-    @using (Html.BeginForm("Index", "AsthmaActionPlan", FormMethod.Post))
-    {
-        <table cellpadding="0" cellspacing="0">
-            <tr>
-                <th colspan="2" align="center">Asthma Action Plan</th>
-            </tr>
-            <tr>
-                <td>Inhaler Names: </td>
-                <td>
-                    @Html.DropDownListFor(m => m.MedicineName, new List<SelectListItem>
-                  { new SelectListItem{Text="Qvar", Value="Qvar"},
-                    new SelectListItem{Text="Advair", Value="Advair"},
-                    new SelectListItem{Text="Aerodid", Value="Aerobid"},
-                    new SelectListItem{Text="Intal", Value="Intal"},
-                    new SelectListItem{Text="Flovent", Value="Flovent"},
-                    new SelectListItem{Text="Albuterol", Value="Albuterol"},
-                    new SelectListItem{Text="Pulmicort", Value="Pulmicort"}},"Please select")
-                </td>
-            </tr>
-            <tr>
-                <td>Inhaler Dosage: </td>
-                <td>
-                    @Html.DropDownListFor(m => m.MedicineDosage, new List<SelectListItem>
-                   { new SelectListItem{Text="1 puff", Value="1 puff"},
-                    new SelectListItem{Text="2 puffs", Value="2 puffs"},
-                    new SelectListItem{Text="3 puffs", Value="3 puff"},
-                    new SelectListItem{Text="4 puffs", Value="4 puffs"} },"Please select")
-                   
-                </td>
-            </tr>
-            <tr>
-                <td>Schedule: </td>
-                <td>
-                    @Html.DropDownListFor(m => m.MedicineSchedule, new List<SelectListItem>
-                   { new SelectListItem{Text="Once a day", Value="Once a day"},
-                     new SelectListItem{Text="Twice a day", Value="Twice a day"},
-                     new SelectListItem{Text="Every 4 hours", Value="Every 4 hours"},
-                     new SelectListItem{Text="Every 6 hours", Value="Every 6 hours"},
-                     new SelectListItem{Text="When needed", Value="When needed"}}, "Please select")
-                </td>
-            </tr>
-            <tr>
-                <td></td>
-                <td><input type="submit" value="Submit" /></td>
-            </tr>
-        </table>
+<style type="text/css">
+    .tg {
+        border-collapse: collapse;
+        border-spacing: 0;
+        margin: 0px auto;
     }
-</body>
-</html>
 
+        .tg td {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: black;
+        }
+
+        .tg th {
+            font-family: Arial, sans-serif;
+            font-size: 14px;
+            font-weight: normal;
+            padding: 10px 5px;
+            border-style: solid;
+            border-width: 1px;
+            overflow: hidden;
+            word-break: normal;
+            border-color: black;
+        }
+
+        .tg .tg-1i2r {
+            background-color: #f8ff00;
+            border-color: inherit;
+            text-align: left;
+            vertical-align: top
+        }
+
+        .tg .tg-94ls {
+            background-color: #cb0000;
+            border-color: inherit;
+            text-align: left;
+            vertical-align: top
+        }
+
+        .tg .tg-c3ow {
+            border-color: inherit;
+            text-align: center;
+            vertical-align: top
+        }
+
+        .tg .tg-0pky {
+            border-color: inherit;
+            text-align: left;
+            vertical-align: top
+        }
+
+        .tg .tg-hw1o {
+            background-color: #009901;
+            border-color: inherit;
+            text-align: center;
+            vertical-align: top
+        }
+
+        .tg .tg-eix7 {
+            background-color: #f8ff00;
+            border-color: inherit;
+            text-align: center;
+            vertical-align: top
+        }
+
+        .tg .tg-1jni {
+            background-color: #cb0000;
+            border-color: inherit;
+            text-align: center;
+            vertical-align: top
+        }
+</style>
+<table class="tg">
+    <tr>
+        <th class="tg-c3ow" colspan="14"><span style="font-weight:bold">ASTHMA ACTION PLAN</span></th>
+    </tr>
+    <tr>
+        <td class="tg-0pky" colspan="7">Name:</td>
+        <td class="tg-0pky" colspan="7">Date:</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky" colspan="7">Doctor's Name:</td>
+        <td class="tg-0pky" colspan="7">Doctor's Phone:</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky" colspan="14">Doctor's Address:</td>
+    </tr>
+    <tr>
+        <td class="tg-hw1o" colspan="14">GREEN ZONE : DOING WELL</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky" colspan="7" rowspan="2">You have <span style="text-decoration:underline">all</span> these:<br>Breathing is good.<br>No cough/wheezing.<br>Sleep through night.<br>Can work/play.</td>
+        <td class="tg-0pky" colspan="7">Use these daily preventive<br>anti-inflammatory medicine.</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky" colspan="3">Medicine:</td>
+        <td class="tg-0pky" colspan="2">Dosage:</td>
+        <td class="tg-0pky" colspan="2">Schedule:</td>
+    </tr>
+    <tr>
+        <td class="tg-eix7" colspan="14">YELLOW ZONE : CAUTION</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky" colspan="7" rowspan="3">You have <span style="text-decoration:underline">any</span> of them:<br>First signs of cold.<br>Exposure to known Triggers.</td>
+        <td class="tg-0pky" colspan="7">Continue with GREEN ZONE medicine<br>and ADD</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky" colspan="3">Medicine:</td>
+        <td class="tg-0pky" colspan="2">Dosage:</td>
+        <td class="tg-0pky" colspan="2">Schedule:</td>
+    </tr>
+    <tr>
+        <td class="tg-1i2r" colspan="7">CALL YOUR PRIMARY CARE DOCTOR</td>
+    </tr>
+    <tr>
+        <td class="tg-1jni" colspan="14">RED ZONE : MEDICAL ALERT</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky" colspan="7" rowspan="3">Your Asthma is getting worse:<br>Medicine not helping.<br>Breathing is hard and fast.<br>Wheezing.<br></td>
+        <td class="tg-0pky" colspan="7">Take these Medicines and call your<br>doctor NOW.</td>
+    </tr>
+    <tr>
+        <td class="tg-0pky" colspan="3">Medicine:</td>
+        <td class="tg-0pky" colspan="2">Dosage:</td>
+        <td class="tg-0pky" colspan="2">Schedule:</td>
+    </tr>
+    <tr>
+        <td class="tg-94ls" colspan="7">GET HELP FROM A DOCTOR NOW!<br>DO NOT WAIT!</td>
+    </tr>
+</table>
