@@ -1,4 +1,4 @@
-﻿@model CapstoneProject.Models.Person
+﻿@model CapstoneProject.Models.ViewModels.PersonProfileViewModel
 
 @{
     ViewBag.Title = "PersonIndex";
@@ -146,23 +146,23 @@
         </div>
     </div>
 
-    <div class="form-group">
+    @*<div class="form-group">
         @Html.LabelFor(model => model.ApplicationId, htmlAttributes: new { @class = "control-label col-md-2" })
         <div class="col-md-10">
             @Html.EditorFor(model => model.ApplicationId, new { htmlAttributes = new { @class = "form-control" } })
             @Html.ValidationMessageFor(model => model.ApplicationId, "", new { @class = "text-danger" })
         </div>
-    </div>
+    </div>*@
 
     <div class="form-group">
-        @Html.LabelFor(model => model.DoctorId, new { @class = "control-label col-md-2" })
+        @Html.Label("Doctor", new { @class = "control-label col-md-2" })
         <div class="col-md-10">
-            @Html.DropDownListFor(model => model.DoctorId, new SelectList(Model.Doctors, "DoctorId", "FirstName", "LastName"), "", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.DoctorId, "", new { @class = "text-danger" })
+            @Html.DropDownListFor(model => model.SelectedDoctor, Model.Doctors, "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.SelectedDoctor, "", new { @class = "text-danger" })
         </div>
     </div>
-    @Html.HiddenFor(model => model.Id)
-    @Html.HiddenFor(model => model.ApplicationId)
+    @*@Html.HiddenFor(model => model.Id)
+    @Html.HiddenFor(model => model.ApplicationId)*@
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
             <input type="submit" value="Create" class="btn btn-default" />

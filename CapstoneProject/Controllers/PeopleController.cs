@@ -8,13 +8,16 @@ using System.Net;
 using System.Web;
 using System.Web.Mvc;
 using CapstoneProject.Models;
+using CapstoneProject.Models.ViewModels;
 using Microsoft.AspNet.Identity;
 
 namespace CapstoneProject.Controllers
 {
     public class PeopleController : Controller
     {
-        private ApplicationDbContext context; 
+        private ApplicationDbContext context;
+
+        #region Action Methods
 
         public PeopleController()
         {
@@ -32,15 +35,30 @@ namespace CapstoneProject.Controllers
         /// <returns></returns>
         public ActionResult PersonIndex()
         {
+            PersonProfileViewModel personProfile = new PersonProfileViewModel();
             var userId = User.Identity.GetUserId();
             var person = context.People.Where(p => p.ApplicationId == userId).FirstOrDefault();
-            return View(person);
-            //var person = context.People.Include(p => p.ApplicationUser).FirstOrDefault();
-            //var SinglePerson = context.People.Where(p => p.Id == person.Id).SingleOrDefault();
-            //return View(SinglePerson);
+            personProfile.FirstName = person.FirstName;
+            personProfile.LastName = person.LastName;
+            personProfile.DOB = person.DOB;
+            personProfile.PhoneNumber = person.PhoneNumber;
+            personProfile.Email = person.Email;
+            personProfile.StreetAddress = person.StreetAddress;
+            personProfile.City = person.City;
+            personProfile.State = person.State;
+            personProfile.Zipcode = person.Zipcode;
+            personProfile.IsPollutionATrigger = person.IsPollutionATrigger;
+            personProfile.ArePollensATrigger = person.ArePollensATrigger;
+            personProfile.AreDustMitesATrigger = person.AreDustMitesATrigger;
+            personProfile.IsTobaccoSmokeATrigger = person.IsTobaccoSmokeATrigger;
+            personProfile.IsMoldATrigger = person.IsMoldATrigger;
+            personProfile.AreBurningWoodOrGrassATrigger = person.AreBurningWoodOrGrassATrigger;
+            personProfile.Doctors = FillDoctorDropdown();
+            return View(personProfile);
+
         }
         [HttpPost]
-        public ActionResult PersonIndex(Person profileDetails)
+        public ActionResult PersonIndex(PersonProfileViewModel profileDetails)
         {
             return View();
         }
@@ -61,8 +79,6 @@ namespace CapstoneProject.Controllers
             return View(person);
         }
 
-          
-        
         // GET: People/Create
         public ActionResult Create()
         {
@@ -71,13 +87,10 @@ namespace CapstoneProject.Controllers
             {
                 Doctors = doctors
             };
-        
+
             return View(person);
         }
 
-        // POST: People/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create(Person person)
@@ -88,62 +101,19 @@ namespace CapstoneProject.Controllers
                 person.ApplicationId = currentUserId;
                 context.People.Add(person);
                 context.SaveChanges();
-                
+
                 return RedirectToAction("PersonIndex");
             }
             catch (Exception e)
             {
                 return View();
             }
-
-            //if(person.Id == 0)
-            //{
-            //    context.People.Add(person);
-            //}
-            //else
-            //{
-            //    var personinDB = context.People.Where(p =>p.Id ==)
-            //    personinDB.FirstName = person.FirstName;
-            //    personinDB.LastName = person.LastName;
-            //    personinDB.DOB = person.DOB;
-            //    personinDB.PhoneNumber = person.PhoneNumber;
-            //    personinDB.Email = person.Email;
-            //    personinDB.StreetAddress = person.StreetAddress;
-            //    personinDB.City = person.City;
-            //    personinDB.State = person.State;
-            //    personinDB.Zipcode = person.Zipcode;
-            //    personinDB.IsPollutionATrigger = person.IsPollutionATrigger;
-            //    personinDB.ArePollensATrigger = person.ArePollensATrigger;
-            //    personinDB.AreDustMitesATrigger = person.AreDustMitesATrigger;
-            //    personinDB.IsTobaccoSmokeATrigger = person.IsTobaccoSmokeATrigger;
-            //    personinDB.IsMoldATrigger = person.IsMoldATrigger;
-            //    personinDB.AreBurningWoodOrGrassATrigger = person.AreBurningWoodOrGrassATrigger;
-            //    personinDB.DoctorId = person.DoctorId;
-
-            //}
-            //context.SaveChanges();
-            //return View(person);
-            //return RedirectToAction("Details","People");
-            //return View(person);
-            //if (ModelState.IsValid)
-            //{
-            //    context.People.Add(person);
-            //    //var Doctors = context.Doctors.Where(d => d);
-            //    context.SaveChanges();
-
-            //    return RedirectToAction("Index");
-            //}
-
-            // return View(person);
         }
 
         // GET: People/Edit/5
         public ActionResult Edit(int? id)
         {
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
+         
             Person person = new Person();
             person = context.People.Where(p => p.Id == id).SingleOrDefault();
             if (person == null)
@@ -153,10 +123,7 @@ namespace CapstoneProject.Controllers
             return View(person);
         }
 
-        // POST: People/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
+          [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(Person person)
         {
@@ -188,13 +155,6 @@ namespace CapstoneProject.Controllers
             {
                 return View();
             }
-            //if (ModelState.IsValid)
-            //{
-            //    context.Entry(person).State = EntityState.Modified;
-            //    context.SaveChanges();
-            //    return RedirectToAction("Index");
-            //}
-            //return View(person);
         }
 
         // GET: People/Delete/5
@@ -203,16 +163,6 @@ namespace CapstoneProject.Controllers
             Person person = new Person();
             person = context.People.Where(p => p.Id == id).SingleOrDefault();
             return View(person);
-            //if (id == null)
-            //{
-            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            //}
-            //Person person = context.People.Find(id);
-            //if (person == null)
-            //{
-            //    return HttpNotFound();
-            //}
-            //return View(person);
         }
 
         // POST: People/Delete/5
@@ -232,6 +182,36 @@ namespace CapstoneProject.Controllers
                 return View();
             }
         }
+        #endregion
+        #region Helper Methods
+        public IEnumerable<SelectListItem> FillDoctorDropdown()
+        {
+            List<SelectListItem> doctors = new List<SelectListItem>();
+            try
+            {
+                var dbDoctors = context.Doctors.ToList();
+                if(dbDoctors.Count>0)
+                {
+                    foreach(var doctor in dbDoctors)
+                    {
+                        doctors.Add(new SelectListItem()
+                        {
+                            Text=doctor.FirstName+" "+doctor.LastName,
+                            Value=Convert.ToString(doctor.DoctorId.Value)
+
+                        });
+                    }
+                }
+            }
+            catch (Exception e)
+            {
+
+                //handling or logging code
+            }
+            
+            return doctors;
+        }
+        #endregion
 
         protected override void Dispose(bool disposing)
         {

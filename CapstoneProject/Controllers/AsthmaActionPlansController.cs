@@ -23,8 +23,20 @@ namespace CapstoneProject.Controllers
         // GET: AsthmaActionPlans
         public ActionResult Index()
         {
-            var asthmaActionPlans = context.AsthmaActionPlans.Include(a => a.Person);
-            return View(asthmaActionPlans.ToList());
+            //var asthmaActionPlans = context.AsthmaActionPlans.Include(a => a.Person);
+            //return View(asthmaActionPlans.ToList());
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Index(AsthmaActionPlan asthmaActionPlan)
+        {
+            int asthmaActionPlanId = asthmaActionPlan.AsthmaActionPlanId;
+            string medicineName = asthmaActionPlan.MedicineName;
+            string medicineDosage = asthmaActionPlan.MedicineDosage;
+            string medicineSchedule = asthmaActionPlan.MedicineSchedule;
+
+            return View();
         }
 
         // GET: AsthmaActionPlans/Details/5

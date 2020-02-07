@@ -1,90 +1,65 @@
-﻿@model IEnumerable<CapstoneProject.Models.AsthmaActionPlan>
+﻿@model CapstoneProject.Models.AsthmaActionPlan
+
 
 @{
-    ViewBag.Title = "Index";
+    Layout = null;
 }
 
-<h2>Index</h2>
+<!DOCTYPE html>
 
-
-
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.Person.FirstName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Medicine1Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Medicine1Dosage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Medicine1Schedule)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Medicine2Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Medicine2Dosage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Medicine2Schedule)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Medicine3Name)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Medicine3Dosage)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Medicine3Schedule)
-        </th>
-        <th></th>
-    </tr>
-
-    @foreach (var item in Model)
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Index</title>
+</head>
+<body>
+    @using (Html.BeginForm("Index", "AsthmaActionPlan", FormMethod.Post))
     {
-        <tr>
-            <td>
-                @Html.DisplayFor(modelItem => item.Person.FirstName)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Medicine1Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Medicine1Dosage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Medicine1Schedule)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Medicine2Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Medicine2Dosage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Medicine2Schedule)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Medicine3Name)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Medicine3Dosage)
-            </td>
-            <td>
-                @Html.DisplayFor(modelItem => item.Medicine3Schedule)
-            </td>
-            <td>
-                @Html.ActionLink("Edit", "Edit", new { id = item.AsthmaActionPlanId }) |
-                @Html.ActionLink("Details", "Details", new { id = item.AsthmaActionPlanId }) |
-                @Html.ActionLink("Delete", "Delete", new { id = item.AsthmaActionPlanId })
-            </td>
-        </tr>
+        <table cellpadding="0" cellspacing="0">
+            <tr>
+                <th colspan="2" align="center">Asthma Action Plan</th>
+            </tr>
+            <tr>
+                <td>Inhaler Names: </td>
+                <td>
+                    @Html.DropDownListFor(m => m.MedicineName, new List<SelectListItem>
+                  { new SelectListItem{Text="Qvar", Value="Qvar"},
+                    new SelectListItem{Text="Advair", Value="Advair"},
+                    new SelectListItem{Text="Aerodid", Value="Aerobid"},
+                    new SelectListItem{Text="Intal", Value="Intal"},
+                    new SelectListItem{Text="Flovent", Value="Flovent"},
+                    new SelectListItem{Text="Albuterol", Value="Albuterol"},
+                    new SelectListItem{Text="Pulmicort", Value="Pulmicort"}},"Please select")
+                </td>
+            </tr>
+            <tr>
+                <td>Inhaler Dosage: </td>
+                <td>
+                    @Html.DropDownListFor(m => m.MedicineDosage, new List<SelectListItem>
+                   { new SelectListItem{Text="1 puff", Value="1 puff"},
+                    new SelectListItem{Text="2 puffs", Value="2 puffs"},
+                    new SelectListItem{Text="3 puffs", Value="3 puff"},
+                    new SelectListItem{Text="4 puffs", Value="4 puffs"} },"Please select")
+                   
+                </td>
+            </tr>
+            <tr>
+                <td>Schedule: </td>
+                <td>
+                    @Html.DropDownListFor(m => m.MedicineSchedule, new List<SelectListItem>
+                   { new SelectListItem{Text="Once a day", Value="Once a day"},
+                     new SelectListItem{Text="Twice a day", Value="Twice a day"},
+                     new SelectListItem{Text="Every 4 hours", Value="Every 4 hours"},
+                     new SelectListItem{Text="Every 6 hours", Value="Every 6 hours"},
+                     new SelectListItem{Text="When needed", Value="When needed"}}, "Please select")
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td><input type="submit" value="Submit" /></td>
+            </tr>
+        </table>
     }
+</body>
+</html>
 
-</table>

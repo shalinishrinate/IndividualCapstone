@@ -198,9 +198,9 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202002061416049_restarting.cs" />
-    <Compile Include="Migrations\202002061416049_restarting.Designer.cs">
-      <DependentUpon>202002061416049_restarting.cs</DependentUpon>
+    <Compile Include="Migrations\202002070700102_actionplanmodel.cs" />
+    <Compile Include="Migrations\202002070700102_actionplanmodel.Designer.cs">
+      <DependentUpon>202002070700102_actionplanmodel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -211,6 +211,7 @@
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\ViewModels\PersonProfileViewModel.cs" />
     <Compile Include="PrivateKeys.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
@@ -315,8 +316,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\202002061416049_restarting.resx">
-      <DependentUpon>202002061416049_restarting.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202002070700102_actionplanmodel.resx">
+      <DependentUpon>202002070700102_actionplanmodel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

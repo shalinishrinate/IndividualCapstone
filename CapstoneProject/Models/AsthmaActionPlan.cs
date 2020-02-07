@@ -12,19 +12,16 @@ namespace CapstoneProject.Models
         [Key]
         public int AsthmaActionPlanId { get; set; }
 
-        public string Medicine1Name { get; set; }
-        public string Medicine1Dosage { get; set; }
-        public string Medicine1Schedule { get; set; }
+        [Display(Name = "Medicine Name")]
+        public string MedicineName { get; set; }
 
-        public string Medicine2Name { get; set; }
-        public string Medicine2Dosage { get; set; }
-        public string Medicine2Schedule { get; set; }
+        [Display(Name = "Medicine Dosage")]
+        public string MedicineDosage { get; set; }
 
-        public string Medicine3Name { get; set; }
-        public string Medicine3Dosage { get; set; }
-        public string Medicine3Schedule { get; set; }
+        [Display(Name = "Medicine Schedule")]
+        public string MedicineSchedule { get; set; }
 
-        [ForeignKey("Person")]
+       [ForeignKey("Person")]
         public int Id { get; set; }
         public Person Person { get; set; }
     }

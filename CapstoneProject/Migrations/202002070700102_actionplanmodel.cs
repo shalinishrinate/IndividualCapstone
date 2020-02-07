@@ -3,7 +3,7 @@ namespace CapstoneProject.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class restarting : DbMigration
+    public partial class actionplanmodel : DbMigration
     {
         public override void Up()
         {
@@ -12,15 +12,9 @@ namespace CapstoneProject.Migrations
                 c => new
                     {
                         AsthmaActionPlanId = c.Int(nullable: false, identity: true),
-                        Medicine1Name = c.String(),
-                        Medicine1Dosage = c.String(),
-                        Medicine1Schedule = c.String(),
-                        Medicine2Name = c.String(),
-                        Medicine2Dosage = c.String(),
-                        Medicine2Schedule = c.String(),
-                        Medicine3Name = c.String(),
-                        Medicine3Dosage = c.String(),
-                        Medicine3Schedule = c.String(),
+                        MedicineName = c.String(),
+                        MedicineDosage = c.String(),
+                        MedicineSchedule = c.String(),
                         Id = c.Int(nullable: false),
                     })
                 .PrimaryKey(t => t.AsthmaActionPlanId)
