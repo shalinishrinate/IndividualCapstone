@@ -136,7 +136,6 @@ namespace CapstoneProject.Controllers
         // GET: People/Edit/5
         public ActionResult Edit(int? id)
         {
-         
             Person person = new Person();
             person = context.People.Where(p => p.Id == id).SingleOrDefault();
             if (person == null)

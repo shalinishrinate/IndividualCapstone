@@ -7,13 +7,13 @@ namespace CapstoneProject.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.2.0-61023")]
-    public sealed partial class newchange : IMigrationMetadata
+    public sealed partial class retrying : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(newchange));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(retrying));
         
         string IMigrationMetadata.Id
         {
-            get { return "202002071637169_newchange"; }
+            get { return "202002071752221_retrying"; }
         }
         
         string IMigrationMetadata.Source

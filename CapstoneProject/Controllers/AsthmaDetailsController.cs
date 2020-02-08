@@ -12,13 +12,17 @@ namespace CapstoneProject.Controllers
 {
     public class AsthmaDetailsController : Controller
     {
-        private ApplicationDbContext db = new ApplicationDbContext();
+        private ApplicationDbContext context;
 
+        public AsthmaDetailsController()
+        {
+             context = new ApplicationDbContext();
+        }
         // GET: AsthmaDetails
         public ActionResult Index()
         {
-            var asthmaDetails = db.AsthmaDetails.Include(a => a.Person);
-            return View(asthmaDetails.ToList());
+            var asthmaDetails = context.AsthmaDetails.Include(a => a.Person).ToList();
+            return View(asthmaDetails);
         }
 
         // GET: AsthmaDetails/Details/5
@@ -28,7 +32,7 @@ namespace CapstoneProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AsthmaDetails asthmaDetails = db.AsthmaDetails.Find(id);
+            AsthmaDetails asthmaDetails = context.AsthmaDetails.Include(p =>p.Person).SingleOrDefault(p =>p.AsthamaDetailsId == id);
             if (asthmaDetails == null)
             {
                 return HttpNotFound();
@@ -39,60 +43,81 @@ namespace CapstoneProject.Controllers
         // GET: AsthmaDetails/Create
         public ActionResult Create()
         {
-            ViewBag.Id = new SelectList(db.People, "Id", "FirstName");
+            ViewBag.Id = new SelectList(context.People, "Id", "FirstName", "LastName");
             return View();
         }
 
-        // POST: AsthmaDetails/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AsthamaDetailsId,PeakFlowRecordedDate,PeakFlowNumber,AsthmaAttacks,Id")] AsthmaDetails asthmaDetails)
+        public ActionResult Create(AsthmaDetails asthmaDetails)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.AsthmaDetails.Add(asthmaDetails);
-                db.SaveChanges();
+                context.AsthmaDetails.Add(asthmaDetails);
+                context.SaveChanges();
                 return RedirectToAction("Index");
             }
+            catch(Exception e)
+            {
+                return View();
+            }
+            //if (ModelState.IsValid)
+            //{
+            //    context.AsthmaDetails.Add(asthmaDetails);
+            //    context.SaveChanges();
+            //    return RedirectToAction("Index");
+            //}
 
-            ViewBag.Id = new SelectList(db.People, "Id", "FirstName", asthmaDetails.Id);
-            return View(asthmaDetails);
+            //ViewBag.Id = new SelectList(context.People, "Id", "FirstName", asthmaDetails.Id);
+            //return View(asthmaDetails);
         }
 
         // GET: AsthmaDetails/Edit/5
         public ActionResult Edit(int? id)
         {
+            AsthmaDetails asthmadetails = new AsthmaDetails();
+            asthmadetails = context.AsthmaDetails.Where(p => p.AsthamaDetailsId == id).SingleOrDefault();
             if (id == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AsthmaDetails asthmaDetails = db.AsthmaDetails.Find(id);
-            if (asthmaDetails == null)
-            {
-                return HttpNotFound();
-            }
-            ViewBag.Id = new SelectList(db.People, "Id", "FirstName", asthmaDetails.Id);
-            return View(asthmaDetails);
+            return View(asthmadetails);
+            //AsthmaDetails asthmaDetails = context.AsthmaDetails.Find(id);
+            //if (asthmaDetails == null)
+            //{
+            //    return HttpNotFound();
+            //}
+            //ViewBag.Id = new SelectList(context.People, "Id", "FirstName", asthmaDetails.Id);
+            //return View(asthmaDetails);
         }
 
-        // POST: AsthmaDetails/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "AsthamaDetailsId,PeakFlowRecordedDate,PeakFlowNumber,AsthmaAttacks,Id")] AsthmaDetails asthmaDetails)
+        public ActionResult Edit(AsthmaDetails asthmaDetails)
         {
-            if (ModelState.IsValid)
+            try
             {
-                db.Entry(asthmaDetails).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                var editedAsthmaDetails = context.AsthmaDetails.Where(p => p.AsthamaDetailsId == asthmaDetails.Id).SingleOrDefault();
+                editedAsthmaDetails.PeakFlowRecordedDate = asthmaDetails.PeakFlowRecordedDate;
+                editedAsthmaDetails.PeakFlowNumber = asthmaDetails.PeakFlowNumber;
+                editedAsthmaDetails.AsthmaAttacks = asthmaDetails.AsthmaAttacks;
+                context.SaveChanges();
+                return RedirectToAction("Index", "AsthmaDetails");
             }
-            ViewBag.Id = new SelectList(db.People, "Id", "FirstName", asthmaDetails.Id);
-            return View(asthmaDetails);
+            catch (Exception e)
+            {
+                return View();
+            }
         }
+        //    if (ModelState.IsValid)
+        //    {
+        //        context.Entry(asthmaDetails).State = EntityState.Modified;
+        //        context.SaveChanges();
+        //        return RedirectToAction("Index");
+        //    }
+        //    ViewBag.Id = new SelectList(context.People, "Id", "FirstName", asthmaDetails.Id);
+        //    return View(asthmaDetails);
+        //}
 
         // GET: AsthmaDetails/Delete/5
         public ActionResult Delete(int? id)
@@ -101,7 +126,7 @@ namespace CapstoneProject.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            AsthmaDetails asthmaDetails = db.AsthmaDetails.Find(id);
+            AsthmaDetails asthmaDetails = context.AsthmaDetails.Find(id);
             if (asthmaDetails == null)
             {
                 return HttpNotFound();
@@ -110,21 +135,29 @@ namespace CapstoneProject.Controllers
         }
 
         // POST: AsthmaDetails/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
-            AsthmaDetails asthmaDetails = db.AsthmaDetails.Find(id);
-            db.AsthmaDetails.Remove(asthmaDetails);
-            db.SaveChanges();
-            return RedirectToAction("Index");
+            try
+            {
+                AsthmaDetails asthmaDetails = context.AsthmaDetails.Find(id);
+                context.AsthmaDetails.Remove(asthmaDetails);
+                context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            catch(Exception e)
+            {
+                return View();
+            }
+
         }
 
         protected override void Dispose(bool disposing)
         {
             if (disposing)
             {
-                db.Dispose();
+                context.Dispose();
             }
             base.Dispose(disposing);
         }

@@ -3,7 +3,7 @@ namespace CapstoneProject.Migrations
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class asthmadetailmodel : DbMigration
+    public partial class retrying : DbMigration
     {
         public override void Up()
         {
@@ -128,6 +128,20 @@ namespace CapstoneProject.Migrations
                 .Index(t => t.ApplicationId);
             
             CreateTable(
+                "dbo.AsthmaDetails",
+                c => new
+                    {
+                        AsthamaDetailsId = c.Int(nullable: false, identity: true),
+                        PeakFlowRecordedDate = c.DateTime(nullable: false),
+                        PeakFlowNumber = c.Int(nullable: false),
+                        AsthmaAttacks = c.Int(nullable: false),
+                        Id = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.AsthamaDetailsId)
+                .ForeignKey("dbo.People", t => t.Id, cascadeDelete: true)
+                .Index(t => t.Id);
+            
+            CreateTable(
                 "dbo.AspNetRoles",
                 c => new
                     {
@@ -142,6 +156,7 @@ namespace CapstoneProject.Migrations
         public override void Down()
         {
             DropForeignKey("dbo.AspNetUserRoles", "RoleId", "dbo.AspNetRoles");
+            DropForeignKey("dbo.AsthmaDetails", "Id", "dbo.People");
             DropForeignKey("dbo.AsthmaActionPlans", "Id", "dbo.People");
             DropForeignKey("dbo.People", "DoctorId", "dbo.Doctors");
             DropForeignKey("dbo.Doctors", "ApplicationId", "dbo.AspNetUsers");
@@ -150,6 +165,7 @@ namespace CapstoneProject.Migrations
             DropForeignKey("dbo.AspNetUserLogins", "UserId", "dbo.AspNetUsers");
             DropForeignKey("dbo.AspNetUserClaims", "UserId", "dbo.AspNetUsers");
             DropIndex("dbo.AspNetRoles", "RoleNameIndex");
+            DropIndex("dbo.AsthmaDetails", new[] { "Id" });
             DropIndex("dbo.Doctors", new[] { "ApplicationId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "RoleId" });
             DropIndex("dbo.AspNetUserRoles", new[] { "UserId" });
@@ -160,6 +176,7 @@ namespace CapstoneProject.Migrations
             DropIndex("dbo.People", new[] { "ApplicationId" });
             DropIndex("dbo.AsthmaActionPlans", new[] { "Id" });
             DropTable("dbo.AspNetRoles");
+            DropTable("dbo.AsthmaDetails");
             DropTable("dbo.Doctors");
             DropTable("dbo.AspNetUserRoles");
             DropTable("dbo.AspNetUserLogins");

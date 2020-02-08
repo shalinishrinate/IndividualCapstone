@@ -7,8 +7,8 @@
 <br />
 <br />
 <div id='map' style='height:500px; width:100%' />
-<script src="https://maps.googleapis.com/maps/api/js?key=googleKey"></script>
-<script type="text/javascript" charset="utf-8">
+<script src=@ViewBag.Url></script>
+@*<script type="text/javascript" charset="utf-8">
     (function (w, d, t, f) {
         w[f] = w[f] || function (c, k, n) {
             s = w[f], k = s['k'] = (s['k'] || (k ? ('&k=' + k) : '')); s['c'] =
@@ -17,13 +17,13 @@
             e.parentNode.insertBefore(L, e);
         };
     })(window, document, 'script', '_aqiFeed');
-</script>
+</script>*@
 
-<span id="city-aqi-container"></span>
+@*<span id="city-aqi-container"></span>
 
 <script type="text/javascript" charset="utf-8">
     _aqiFeed({ container: "city-aqi-container", city: "London" });
-</script>
+</script>*@
 <div style='%style;max-width:180px;text-align:center;'><small>%cityname AQI:</small> <div style='font-size:88px;height:60px;padding-top:30px;'>%aqiv</div> %impact</div>
 
 <script>

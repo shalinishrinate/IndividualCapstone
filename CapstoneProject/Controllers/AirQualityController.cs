@@ -14,12 +14,39 @@ namespace CapstoneProject.Controllers
     public class AirQualityController : Controller
     {
         // GET: AirQuality
-        public ActionResult Index()
+
+        public ActionResult Search() 
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult Search(string city, string country)
+        {
+            HttpClient client = new HttpClient();
+            string lat = "";
+            string lng = "";
+            var response = client.GetAsync("");
+            response.Wait();
+            var result = response.Result;
+            if (result.IsSuccessStatusCode)
+            {
+                var read = result.Content.ReadAsStringAsync();
+                read.Wait();
+                var content = read.Result;
+                JObject jObject = JObject.Parse(content);
+                lat = (string)jObject["geometry"]["location"]["lat"];
+                lng = (string)jObject["geometry"]["location"]["lng"];
+            }
+            return RedirectToAction("Index", new { latit = lat, longit = lng });
+        }
+
+        public ActionResult Index(string latit, string longit)
         {
             List<string> latList = new List<string>();
             List<string> lngList = new List<string>();
             HttpClient client = new HttpClient();
-            var response = client.GetAsync("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=43.0392,-87.9084&radius=1609&type=hospital&keyword=emergency&hospital&key=googleplacesKey");
+            var response = client.GetAsync("https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + latit + "," + longit + "&radius=1609&type=hospital&keyword=emergency&hospital&key=" + PrivateKeys.googleplacesKey);
             response.Wait();
             var result = response.Result;
             if (result.IsSuccessStatusCode)
@@ -38,6 +65,7 @@ namespace CapstoneProject.Controllers
                 }
             }
             LatLngViewModel latLng = new LatLngViewModel();
+            ViewBag.Url = "https://maps.googleapis.com/maps/api/js?key=" + PrivateKeys.googleMap;
             latLng.Lat = latList;
             latLng.Lng = lngList;
             return View(latLng);
