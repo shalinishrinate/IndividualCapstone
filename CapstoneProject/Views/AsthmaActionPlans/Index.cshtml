@@ -1,6 +1,4 @@
-﻿@model CapstoneProject.Models.AsthmaActionPlan
-
-
+﻿@model List<CapstoneProject.Models.AsthmaActionPlan>
 @{
     Layout = null;
 }
@@ -87,15 +85,15 @@
         <th class="tg-c3ow" colspan="14"><span style="font-weight:bold">ASTHMA ACTION PLAN</span></th>
     </tr>
     <tr>
-        <td class="tg-0pky" colspan="7">Name: <input type="text" id="fname" name="fname"></td>
-        <td class="tg-0pky" colspan="7">Date: <input type="text" id="fname" name="fname"></td>
+        <td class="tg-0pky" colspan="7">Name: @Html.TextBoxFor(model => model.FirstOrDefault().Person.FirstName)  @Html.TextBoxFor(model => model.FirstOrDefault().Person.LastName)</td>
+        <td class="tg-0pky" colspan="7">Your normal peak flow rate: @Html.TextBoxFor(model => model.FirstOrDefault().NormalPeakFlowRate)</td>
     </tr>
     <tr>
-        <td class="tg-0pky" colspan="7">Doctor's Name: <input type="text" id="fname" name="fname"></td>
-        <td class="tg-0pky" colspan="7">Doctor's Phone: <input type="text" id="fname" name="fname"></td>
+        <td class="tg-0pky" colspan="7">Doctor's Name:  @Html.TextBoxFor(model => model.FirstOrDefault().Person.Doctor.FirstName) @Html.TextBoxFor(model => model.FirstOrDefault().Person.Doctor.LastName)</td>
+        <td class="tg-0pky" colspan="7">Doctor's Phone: @Html.TextBoxFor(model => model.FirstOrDefault().Person.Doctor.PhoneNumber)</td>
     </tr>
     <tr>
-        <td class="tg-0pky" colspan="14">Doctor's Address: <input type="text" id="fname" name="fname"></td>
+        <td class="tg-0pky" colspan="14">Doctor's Address: @Html.TextBoxFor(model => model.FirstOrDefault().Person.Doctor.StreetAddress)</td>
     </tr>
     <tr>
         <td class="tg-hw1o" colspan="14"><b>GREEN ZONE : DOING WELL</b></td>
@@ -106,30 +104,14 @@
     </tr>
     <tr>
         <td class="tg-0pky" colspan="3">
-            Medicine: @Html.DropDownListFor(m => m.MedicineName, new List<SelectListItem>
-{ new SelectListItem{Text="Qvar", Value="Qvar"},
-new SelectListItem{Text="Advair", Value="Advair"},
-new SelectListItem{Text="Aerodid", Value="Aerobid"},
-new SelectListItem{Text="Intal", Value="Intal"},
-new SelectListItem{Text="Flovent", Value="Flovent"},
-new SelectListItem{Text="Albuterol", Value="Albuterol"},
-new SelectListItem{Text="Pulmicort", Value="Pulmicort"}}, "Please select")
+            Medicine: @Html.EnumDropDownListFor(m => m.FirstOrDefault().GreenMedicineName, "Please select")
         </td>
         <td class="tg-0pky" colspan="2">
-            Dosage: @Html.DropDownListFor(m => m.MedicineDosage, new List<SelectListItem>
-{ new SelectListItem{Text="1 puff", Value="1 puff"},
-new SelectListItem{Text="2 puffs", Value="2 puffs"},
-new SelectListItem{Text="3 puffs", Value="3 puff"},
-new SelectListItem{Text="4 puffs", Value="4 puffs"} }, "Please select")
+            Dosage: @Html.EnumDropDownListFor(m => m.FirstOrDefault().GreenMedicineDosage, "Please select")
 
         </td>
         <td class="tg-0pky" colspan="2">
-            Schedule: @Html.DropDownListFor(m => m.MedicineSchedule, new List<SelectListItem>
-{ new SelectListItem{Text="Once a day", Value="Once a day"},
-new SelectListItem{Text="Twice a day", Value="Twice a day"},
-new SelectListItem{Text="Every 4 hours", Value="Every 4 hours"},
-new SelectListItem{Text="Every 6 hours", Value="Every 6 hours"},
-new SelectListItem{Text="When needed", Value="When needed"}}, "Please select")
+            Schedule: @Html.EnumDropDownListFor(m => m.FirstOrDefault().GreenMedicineSchedule, "Please select")
         </td>
     </tr>
     <tr>
@@ -141,30 +123,14 @@ new SelectListItem{Text="When needed", Value="When needed"}}, "Please select")
     </tr>
     <tr>
         <td class="tg-0pky" colspan="3">
-            Medicine: @Html.DropDownListFor(m => m.MedicineName, new List<SelectListItem>
-{ new SelectListItem{Text="Qvar", Value="Qvar"},
-new SelectListItem{Text="Advair", Value="Advair"},
-new SelectListItem{Text="Aerodid", Value="Aerobid"},
-new SelectListItem{Text="Intal", Value="Intal"},
-new SelectListItem{Text="Flovent", Value="Flovent"},
-new SelectListItem{Text="Albuterol", Value="Albuterol"},
-new SelectListItem{Text="Pulmicort", Value="Pulmicort"}}, "Please select")
+            Medicine: @Html.EnumDropDownListFor(m => m.FirstOrDefault().YellowMedicineName, "Please select")
         </td>
         <td class="tg-0pky" colspan="2">
-            Dosage: @Html.DropDownListFor(m => m.MedicineDosage, new List<SelectListItem>
-{ new SelectListItem{Text="1 puff", Value="1 puff"},
-new SelectListItem{Text="2 puffs", Value="2 puffs"},
-new SelectListItem{Text="3 puffs", Value="3 puff"},
-new SelectListItem{Text="4 puffs", Value="4 puffs"} }, "Please select")
+            Dosage: @Html.EnumDropDownListFor(m => m.FirstOrDefault().YellowMedicineDosage, "Please select")
 
         </td>
         <td class="tg-0pky" colspan="2">
-            Schedule: @Html.DropDownListFor(m => m.MedicineSchedule, new List<SelectListItem>
-{ new SelectListItem{Text="Once a day", Value="Once a day"},
-new SelectListItem{Text="Twice a day", Value="Twice a day"},
-new SelectListItem{Text="Every 4 hours", Value="Every 4 hours"},
-new SelectListItem{Text="Every 6 hours", Value="Every 6 hours"},
-new SelectListItem{Text="When needed", Value="When needed"}}, "Please select")
+            Schedule: @Html.EnumDropDownListFor(m => m.FirstOrDefault().YellowMedicineSchedule, "Please select")
         </td>
     </tr>
     <tr>
@@ -179,37 +145,88 @@ new SelectListItem{Text="When needed", Value="When needed"}}, "Please select")
     </tr>
     <tr>
         <td class="tg-0pky" colspan="3">
-            Medicine: @Html.DropDownListFor(m => m.MedicineName, new List<SelectListItem>
-{ new SelectListItem{Text="Qvar", Value="Qvar"},
-new SelectListItem{Text="Advair", Value="Advair"},
-new SelectListItem{Text="Aerodid", Value="Aerobid"},
-new SelectListItem{Text="Intal", Value="Intal"},
-new SelectListItem{Text="Flovent", Value="Flovent"},
-new SelectListItem{Text="Albuterol", Value="Albuterol"},
-new SelectListItem{Text="Pulmicort", Value="Pulmicort"}}, "Please select")
-        </td>
-        <td class="tg-0pky" colspan="2">
-            Dosage: @Html.DropDownListFor(m => m.MedicineDosage, new List<SelectListItem>
-{ new SelectListItem{Text="1 puff", Value="1 puff"},
-new SelectListItem{Text="2 puffs", Value="2 puffs"},
-new SelectListItem{Text="3 puffs", Value="3 puff"},
-new SelectListItem{Text="4 puffs", Value="4 puffs"} }, "Please select")
 
+            Medicine:
+            @Html.EnumDropDownListFor(m => m.FirstOrDefault().RedMedicineName, "Select Select")
         </td>
         <td class="tg-0pky" colspan="2">
-            Schedule: @Html.DropDownListFor(m => m.MedicineSchedule, new List<SelectListItem>
-{ new SelectListItem{Text="Once a day", Value="Once a day"},
-new SelectListItem{Text="Twice a day", Value="Twice a day"},
-new SelectListItem{Text="Every 4 hours", Value="Every 4 hours"},
-new SelectListItem{Text="Every 6 hours", Value="Every 6 hours"},
-new SelectListItem{Text="When needed", Value="When needed"}}, "Please select")
+            Dosage:
+            @Html.EnumDropDownListFor(model => model.FirstOrDefault().RedMedicineDosage, "Please select")
+        </td>
+        <td class="tg-0pky" colspan="2">
+            Schedule:
+            @Html.EnumDropDownListFor(model => model.FirstOrDefault().RedMedicineSchedule, "Please select")
         </td>
     </tr>
     <tr>
         <td class="tg-94ls" colspan="7"><b>GET HELP FROM A DOCTOR NOW! DO NOT WAIT!</b></td>
     </tr>
     <tr>
-        <th class="tg-c3ow" colspan="14"><span style="font-weight:bold"><input type="submit" value="Submit" /></span></th>
-        @*<td><input type="submit" value="Submit" /></td>*@
+        <td class="tg-c3ow" colspan="14"><span style="font-weight:bold"><input type="submit" value="Submit" id="Save" /></span></td>
     </tr>
- </table>
+</table>
+<script src="~/Scripts/jquery-3.3.1.min.js"></script>
+<script type="text/javascript">
+
+    $('#Save').click(function () {
+
+        var url = "/AsthmaActionPlans/Create";
+
+
+
+        var doctor = {};
+        doctor.FirstName = $('#Person_Doctor_FirstName').val(),
+            doctor.LastName = $("#Person_Doctor_LastName").val(),
+            doctor.PhoneNumber = $("#Person_Doctor_PhoneNumber").val(),
+            doctor.StreetAddress = $("#Person_Doctor_StreetAddress").val()
+
+
+
+        var person = {};
+        person.FirstName = $("#Person_FirstName").val(),
+            person.LastName = $("#Person_LastName").val(),
+            person.Email = "Test@gmail.com",
+            person.PhoneNumber = "999993221",
+            person.Zipcode = "201010",
+            person.IsPollutionATrigger = false,
+            person.ArePollensATrigger = false,
+            person.AreDustMitesATrigger = false,
+            person.IsTobaccoSmokeATrigger = false,
+            person.IsMoldATrigger = false,
+            person.AreBurningWoodOrGrassATrigger = false,
+            person.Doctor = doctor
+
+
+        var model = {};
+        
+            model.NormalPeakFlowRate = $("#NormalPeakFlowRate").val(),
+            model.GreenMedicineName = $("#GreenMedicineName").val(),
+            model.GreenMedicineDosage = $("#GreenMedicineDosage").val(),
+            model.GreenMedicineSchedule = $("#GreenMedicineSchedule").val(),
+            model.YellowMedicineName = $("#YellowMedicineName").val(),
+            model.YellowMedicineDosage = $("#YellowMedicineDosage").val(),
+            model.YellowMedicineSchedule = $("#YellowMedicineSchedule").val(),
+            model.RedMedicineName = $("#RedMedicineName").val(),
+            model.RedMedicineDosage = $("#RedMedicineDosage").val(),
+            model.RedMedicineSchedule = $("#RedMedicineSchedule").val(),
+            model.Person = person
+
+        $.ajax({
+            url: "/AsthmaActionPlans/Create",
+            type: "POST",
+            data: { asthmaActionPlan: model },
+            success: function (data) {
+
+                window.location = data;
+
+            },
+            error: function (xhr) {
+                alert('error');
+            }
+        });
+
+
+    })
+
+</script>
+

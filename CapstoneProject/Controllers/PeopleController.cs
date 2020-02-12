@@ -83,14 +83,32 @@ namespace CapstoneProject.Controllers
 
             context.People.Add(person);
             context.SaveChanges();
-            return RedirectToAction("Details",new {id=profileDetails.Id });
+            return RedirectToAction("DetailsView", new { id = profileDetails.Id });
         }
 
         // GET: People/Details/5
-        public ActionResult Details(int? id)
+        public ActionResult DetailsView(int id)
         {
-            var person = context.People.Include(p => p.Doctor).SingleOrDefault(p => p.Id == id);
-            if (id == null)
+           // var id = Convert.ToInt32(userId);
+
+            var person = context.People.Include(p => p.Doctor).FirstOrDefault(p => p.Id == id);
+            if (person == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            //Person person = context.People.Find(id);
+            if (person == null)
+            {
+                return HttpNotFound();
+            }
+            return View(person);
+        }
+
+        // GET: People/Details/5
+        public ActionResult Details(string id)
+        {
+            var person = context.People.Include(p => p.Doctor).FirstOrDefault(p => p.ApplicationId == id);
+            if (person == null)
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
@@ -125,7 +143,7 @@ namespace CapstoneProject.Controllers
                 context.People.Add(person);
                 context.SaveChanges();
 
-                return RedirectToAction("PersonIndex");
+                return RedirectToAction("DetailsView", new { id = person.Id });
             }
             catch (Exception e)
             {
@@ -170,7 +188,8 @@ namespace CapstoneProject.Controllers
                 editedPerson.DoctorId = person.DoctorId;
 
                 context.SaveChanges();
-                return RedirectToAction("Index", "People");
+                return RedirectToAction("PersonIndex", "People");
+                //return View(person);
 
             }
             catch (Exception e)

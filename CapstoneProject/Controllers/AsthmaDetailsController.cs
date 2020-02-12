@@ -100,7 +100,7 @@ namespace CapstoneProject.Controllers
                 var editedAsthmaDetails = context.AsthmaDetails.Where(p => p.AsthamaDetailsId == asthmaDetails.Id).SingleOrDefault();
                 editedAsthmaDetails.PeakFlowRecordedDate = asthmaDetails.PeakFlowRecordedDate;
                 editedAsthmaDetails.PeakFlowNumber = asthmaDetails.PeakFlowNumber;
-                editedAsthmaDetails.AsthmaAttacks = asthmaDetails.AsthmaAttacks;
+                editedAsthmaDetails.AsthmaAttackNumber = asthmaDetails.AsthmaAttackNumber;
                 context.SaveChanges();
                 return RedirectToAction("Index", "AsthmaDetails");
             }

@@ -86,7 +86,7 @@ namespace CapstoneProject.Controllers
                     var roles = await UserManager.GetRolesAsync(user.Id);
                     if (roles.Contains("Person"))
                     {
-                        return RedirectToAction("Details", "People");
+                        return RedirectToAction("Details", "People",new { @id = user.Id });
                     }
                     else
                     {

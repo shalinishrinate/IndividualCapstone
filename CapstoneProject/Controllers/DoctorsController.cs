@@ -45,9 +45,6 @@ namespace CapstoneProject.Controllers
             return View();
         }
 
-        // POST: Doctors/Create
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Create([Bind(Include = "DoctorId,FirstName,LastName,Email,PhoneNumber,StreetAddress,City,State,Zipcode")] Doctor doctor)
@@ -96,24 +93,26 @@ namespace CapstoneProject.Controllers
         // GET: Doctors/Delete/5
         public ActionResult Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Doctor doctor = context.Doctors.Find(id);
-            if (doctor == null)
-            {
-                return HttpNotFound();
-            }
+            Doctor doctor = new Doctor();
+            doctor = context.Doctors.Where(d => d.DoctorId == id).SingleOrDefault();
+            //if (id == null)
+            //{
+            //    return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            //}
+            //Doctor doctor = context.Doctors.Find(id);
+            //if (doctor == null)
+            //{
+            //    return HttpNotFound();
+            //}
             return View(doctor);
         }
 
         // POST: Doctors/Delete/5
-        [HttpPost, ActionName("Delete")]
+        [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
+        public ActionResult Delete(int id)
         {
-            Doctor doctor = context.Doctors.Find(id);
+            Doctor doctor = context.Doctors.Where(d => d.DoctorId == id).SingleOrDefault();
             context.Doctors.Remove(doctor);
             context.SaveChanges();
             return RedirectToAction("Index");

@@ -27,9 +27,13 @@ namespace CapstoneProject.Models
         [Key]
         public int AsthamaDetailsId{ get; set; }
 
+        [DataType(DataType.Date)]
         public DateTime PeakFlowRecordedDate { get; set; }
         public int PeakFlowNumber { get; set; }
-        public int AsthmaAttacks { get; set; }
+        [DataType(DataType.Date)]
+        public DateTime AsthmaAttackDate { get; set; }
+        public int AsthmaAttackNumber { get; set; }
+       
 
         [ForeignKey("Person")]
         public int Id { get; set; }

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CapstoneProject.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -12,16 +13,38 @@ namespace CapstoneProject.Models
         [Key]
         public int AsthmaActionPlanId { get; set; }
 
-        [Display(Name = "Medicine Name")]
-        public string MedicineName { get; set; }
+        [Display(Name = "Green Medicine Name")]
+        public MedicineNameEnum GreenMedicineName { get; set; }
 
-        [Display(Name = "Medicine Dosage")]
-        public string MedicineDosage { get; set; }
+        [Display(Name = "Green Medicine Dosage")]
+        public MedicineDosageEnum GreenMedicineDosage { get; set; }
 
-        [Display(Name = "Medicine Schedule")]
-        public string MedicineSchedule { get; set; }
+        [Display(Name = "Green Medicine Schedule")]
+        public MedicineScheduleEnum GreenMedicineSchedule { get; set; }
 
-       [ForeignKey("Person")]
+        [Display(Name = "Yellow Medicine Name")]
+        public MedicineNameEnum YellowMedicineName { get; set; }
+
+        [Display(Name = "Yellow Medicine Dosage")]
+        public MedicineDosageEnum YellowMedicineDosage { get; set; }
+
+        [Display(Name = "Yellow Medicine Schedule")]
+        public MedicineScheduleEnum YellowMedicineSchedule { get; set; }
+
+        [Display(Name = "Red Medicine Name")]
+        public MedicineNameEnum RedMedicineName { get; set; }
+
+        [Display(Name = "Red Medicine Dosage")]
+        public MedicineDosageEnum RedMedicineDosage { get; set; }
+
+        [Display(Name = "Red Medicine Schedule")]
+        public MedicineScheduleEnum RedMedicineSchedule { get; set; }
+
+        [Display(Name = "Normal Peak Flow Rate")]
+        public int NormalPeakFlowRate { get; set; }
+
+
+        [ForeignKey("Person")]
         public int Id { get; set; }
         public Person Person { get; set; }
     }

@@ -1993,7 +1993,7 @@ pre {
 
 @media (min-width: 768px) {
     .container {
-        width: 750px;
+        /*width: 750px;*/
     }
 }
 
@@ -2494,7 +2494,7 @@ pre {
     }
 
     .col-md-4 {
-        width: 33.33333333%;
+        width: 50%;
     }
 
     .col-md-3 {
@@ -6005,11 +6005,11 @@ a.badge:focus {
 }
 
 .jumbotron {
-    padding-top: 30px;
+    /*padding-top: 30px;*/
     padding-bottom: 30px;
     margin-bottom: 30px;
     color: inherit;
-    background-color: #fafafa;
+    background-color: white;
 }
 
     .jumbotron h1,
@@ -6029,8 +6029,8 @@ a.badge:focus {
 
 .container .jumbotron,
 .container-fluid .jumbotron {
-    padding-right: 15px;
-    padding-left: 15px;
+    /*padding-right: 15px;
+    padding-left: 15px;*/
     border-radius: 0;
 }
 
@@ -6040,14 +6040,14 @@ a.badge:focus {
 
 @media screen and (min-width: 768px) {
     .jumbotron {
-        padding-top: 48px;
-        padding-bottom: 48px;
+        /*padding-top: 48px;
+        padding-bottom: 48px;*/
     }
 
     .container .jumbotron,
     .container-fluid .jumbotron {
-        padding-right: 60px;
-        padding-left: 60px;
+        /*padding-right: 60px;
+        padding-left: 60px;*/
     }
 
     .jumbotron h1,

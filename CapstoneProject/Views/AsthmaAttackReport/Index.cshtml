@@ -1,0 +1,56 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+}
+
+<html>
+<head>
+    <meta charset="UTF-8">
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/canvasjs.min.js"></script>
+
+    <script type="text/javascript">
+        $(document).ready(function () {
+            var dataPoints = [];
+            $.getJSON("/AsthmaAttackReport/GetData/", function (data) {
+                for (var i = 0; i <= data.length - 1; i++) {
+                    var fromDate = new Date(data[i].AsthmaAttackDate);
+                    var date = new Date(fromDate).toDateString("yyyy-MM-dd");
+                    dataPoints.push({ label: (date), y: parseInt(data[i].AsthmaAttackNumber) });
+                }
+                var chart = new CanvasJS.Chart("chartContainer", {
+                    animationEnabled: true,
+                    theme: "light2",
+                    title: {
+                        text: "Asthma Attack Report"
+                    },
+                    axisX: {
+                        intervalType: "month"
+
+                    },
+
+                    axisY: {
+                        valueFormatString: "0#"
+                    },
+                    data: [
+                        {
+                            type: "bar",
+                            dataPoints: dataPoints
+                        }
+                    ]
+                });
+
+                chart.render();
+            });
+        });
+    </script>
+
+
+</head>
+<body>
+    <div id="chartContainer" style="height: 370px; max-width: 920px; margin: 0px auto;"></div>
+    <script src="~/Scripts/jquery-3.3.1.min.js"></script>
+    <script src="~/Scripts/canvasjs.min.js"></script>
+</body>
+</html>
+
